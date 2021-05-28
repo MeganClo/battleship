@@ -13,12 +13,12 @@ const rotateButton = document.querySelector("#rotate");
 const turnDisplay = document.querySelector("#whose-turn");
 const infoDisplay = document.querySelector("#game-stats");
 
-// Create our board
+// Create our boards
 const width = 10;
 const userSquares = [];
 const computerSquares = [];
 // function to create each board (computer and user)
-function createBoard(grid, squares, width) {
+function createBoard(grid, squares) {
     for (let i = 0; i < width*width; i++) {
         const square = document.createElement("div");
         square.dataset.id = i;
@@ -26,6 +26,76 @@ function createBoard(grid, squares, width) {
         squares.push(square);
     }
 };
+// passing in parameters to create each board
+// user board
+createBoard(userGrid, userSquares);
+// computer board
+createBoard(computerGrid, computerSquares);
 
-createBoard(userGrid, userSquares, width);
-createBoard(computerGrid, computerSquares, width);
+// placing ships in computer grid
+// setting array of computer ships
+const shipArr = [
+    {
+        name: "destroyer",
+        directions: [
+            [0, 1],
+            [0, width]
+        ]
+    },
+    {
+        name: "submarine",
+        directions: [
+            [0, 1, 2],
+            [0, width, width*2]
+        ]
+    },
+    {
+        name: "cruiser",
+        directions: [
+            [0, 1, 2],
+            [0, width, width*2]
+        ]
+    },
+    {
+        name: "battleship",
+        directions: [
+            [0, 1, 2, 3],
+            [0, width, width*2, width*3]
+        ]
+    },
+    {
+        name: "carrier",
+        directions: [
+            [0, 1, 2, 3, 4],
+            [0, width, width*2, width*3, width*4]
+        ]
+    },
+];
+
+// placing computer ships in random location on computer grid
+function randomPlacement(ship) {
+    // randomly setting the computer ship to be placed horizontally or vertically
+    let randomDirection = Math.floor(Math.random() * ship.directions.length);
+    let current = ship.directions[randomDirection];
+    // if horizontal we will incrememt by 1
+    if (randomDirection === 0) {
+        direction = 1;
+    }
+    // if vertical we will increment by 10 (our grid is 10 by 10)
+    if (randomDirection === 1) {
+        direction = 10;
+    }
+    // setting our random starting square for each ship
+    let randomStartSquare = Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction));
+    // checking to see if any of squares are already taken by a different ship
+    const isTaken = current.some(index => computerSquares[randomStartSquare + index].classList.contains("taken"));
+    // checking to see if we're at the edge
+    const isAtRightEdge = current.some(index => (randomStartSquare + index) % width === width - 1);
+    const isAtLeftEdge = current.some(index => (randomStartSquare + index) % width === 0);
+
+    if(!isTaken && !isAtRightEdge && !isAtLeftEdge) {
+        current.forEach(index => computerSquares[randomStartSquare + index].classList.add("taken", ship.name));
+    } else randomPlacement(ship);
+};
+
+randomPlacement(shipArr[0]);
