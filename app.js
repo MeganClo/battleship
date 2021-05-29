@@ -88,7 +88,7 @@ function randomPlacement(ship) {
     console.log("this is direction", direction);
     console.log("this is ship.directions", (ship.directions[0].length * direction));
     // setting our random starting square for each ship
-    let randomStartSquare = (Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction)));
+    let randomStartSquare = (Math.floor(Math.random() * 99));
     // checking to see if any of squares are already taken by a different ship
     // console.log(computerSquares)
     // console.log(randomStartSquare);
