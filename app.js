@@ -85,12 +85,19 @@ function randomPlacement(ship) {
     if (randomDirection === 1) {
         direction = 10;
     }
+    console.log("this is direction", direction);
+    console.log("this is ship.directions", (ship.directions[0].length * direction));
     // setting our random starting square for each ship
-    let randomStartSquare = Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction));
+    let randomStartSquare = (Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction)));
     // checking to see if any of squares are already taken by a different ship
+    // console.log(computerSquares)
+    // console.log(randomStartSquare);
+    console.log("this is randomStartSquare", randomStartSquare)
     const isTaken = current.some(index => computerSquares[randomStartSquare + index].classList.contains("taken"));
-    // checking to see if we're at the edge
+    
+    // checking to see if we're at the right edge
     const isAtRightEdge = current.some(index => (randomStartSquare + index) % width === width - 1);
+    // checking to see if we're at the left edge
     const isAtLeftEdge = current.some(index => (randomStartSquare + index) % width === 0);
 
     if(!isTaken && !isAtRightEdge && !isAtLeftEdge) {
@@ -99,3 +106,4 @@ function randomPlacement(ship) {
 };
 
 randomPlacement(shipArr[0]);
+// randomPlacement(shipArr[1]);
