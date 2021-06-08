@@ -74,8 +74,10 @@ const shipArr = [
 
 // placing computer ships in random location on computer grid
 function randomPlacement(ship) {
-    // randomly setting the computer ship to be placed horizontally or vertically
+    // randomly setting the computer ship to be placed horizontally or vertically (choosing which index in our direction array above)
+    // will be 0 or 1
     let randomDirection = Math.floor(Math.random() * ship.directions.length);
+    // choosing either index 0 or index 1 of array above
     let current = ship.directions[randomDirection];
     // if horizontal we will incrememt by 1
     if (randomDirection === 0) {
@@ -85,13 +87,18 @@ function randomPlacement(ship) {
     if (randomDirection === 1) {
         direction = 10;
     }
+    console.log("this is randomdirection", randomDirection)
+    console.log("this is current", current)
     console.log("this is direction", direction);
-    console.log("this is ship.directions", (ship.directions[0].length * direction));
-    // setting our random starting square for each ship
-    let randomStartSquare = (Math.floor(Math.random() * 99));
+    console.log("this is ship's length", ship.directions[0].length)
     // checking to see if any of squares are already taken by a different ship
-    // console.log(computerSquares)
-    // console.log(randomStartSquare);
+    
+    // setting our random starting square for each ship
+    // let randomStartSquare = (Math.floor(Math.random() * 99));
+
+    let randomStartSquare = Math.abs(Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction)))
+    
+    
     console.log("this is randomStartSquare", randomStartSquare)
     const isTaken = current.some(index => computerSquares[randomStartSquare + index].classList.contains("taken"));
     
