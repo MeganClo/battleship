@@ -102,15 +102,18 @@ function randomPlacement(ship) {
     console.log("this is randomStartSquare", randomStartSquare)
     const isTaken = current.some(index => computerSquares[randomStartSquare + index].classList.contains("taken"));
     
-    // checking to see if we're at the right edge
+    // checking to see if we're at the right edge (not where we want to be because we can't build out our ship)
     const isAtRightEdge = current.some(index => (randomStartSquare + index) % width === width - 1);
     // checking to see if we're at the left edge
     const isAtLeftEdge = current.some(index => (randomStartSquare + index) % width === 0);
 
+    // if it's not taken, if it's not at the right edge, and its not at the left edge, we can add class taken
     if(!isTaken && !isAtRightEdge && !isAtLeftEdge) {
         current.forEach(index => computerSquares[randomStartSquare + index].classList.add("taken", ship.name));
     } else randomPlacement(ship);
 };
 
-randomPlacement(shipArr[0]);
-// randomPlacement(shipArr[1]);
+// looping though ship array and passing each ship into our function to generate the placement
+for (let i = 0; i < shipArr.length; i++) {
+    randomPlacement(shipArr[i]);
+};

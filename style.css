@@ -81,3 +81,15 @@
 .submarine {
     background-color: purple;
 }
+
+.cruiser {
+    background-color: rgb(202, 147, 28);
+}
+
+.battleship {
+    background-color: turquoise;
+}
+
+.carrier {
+    background-color: rgb(44, 43, 43);
+}
