@@ -206,6 +206,10 @@ function dragDrop() {
     let shipLastIdInGrid = lastShipIndex + parseInt(this.dataset.id);
     console.log(shipLastIdInGrid);
 
+    // making sure our ships don't wrap around the grid-setting some squares in our grid that aren't allowed
+    // const notAllowedHorizontal
+    // const notAllowedVertical 
+
     // get the selected index of ship we're dragging
     selectedShipIndex = parseInt(selectedShipNameWithIndex.substr(-1));
 
@@ -214,18 +218,20 @@ function dragDrop() {
     console.log(shipLastIdInGrid);
     // if our ship direction is horizontal, we want to increment by 1
     if (isHorizontal) {
+        console.log(parseInt(this.dataset.id));
         for (let i = 0; i < draggedShipLength; i++) {
             userSquares[parseInt(this.dataset.id) - selectedShipIndex + i].classList.add("taken", shipName);
             
         }
     }
-    if (!isHorizontal) {
+    else if (!isHorizontal) {
+        console.log(parseInt(this.dataset.id));
         for (let i = 0; i < draggedShipLength; i++) {
             userSquares[parseInt(this.dataset.id) - selectedShipIndex + width * i].classList.add("taken", shipName);
             
         }
     } 
-    // else return
+    else return
 
     // removing our ship from our choice grid after moving it to our game grid
     displayGrid.removeChild(draggedShip);
