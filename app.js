@@ -1,7 +1,7 @@
 // targetting html elements
 const userGrid = document.querySelector(".grid-user");
 const computerGrid = document.querySelector(".grid-computer");
-const diplayGrid = document.querySelector(".grid-display");
+const displayGrid = document.querySelector(".grid-display");
 const ships = document.querySelectorAll(".ship");
 const destroyer = document.querySelector(".destroyer-container");
 const submarine = document.querySelector(".submarine-container");
@@ -204,10 +204,33 @@ function dragDrop() {
 
     // getting the last square number our ship will be in on the grid
     let shipLastIdInGrid = lastShipIndex + parseInt(this.dataset.id);
+    console.log(shipLastIdInGrid);
 
     // get the selected index of ship we're dragging
     selectedShipIndex = parseInt(selectedShipNameWithIndex.substr(-1));
 
+    // capturing where the ship lands in our grid by the last index of ship's grid square number
+    shipLastIdInGrid = shipLastIdInGrid - selectedShipIndex;
+    console.log(shipLastIdInGrid);
+    // if our ship direction is horizontal, we want to increment by 1
+    if (isHorizontal) {
+        for (let i = 0; i < draggedShipLength; i++) {
+            userSquares[parseInt(this.dataset.id) - selectedShipIndex + i].classList.add("taken", shipName);
+            
+        }
+    }
+    if (!isHorizontal) {
+        for (let i = 0; i < draggedShipLength; i++) {
+            userSquares[parseInt(this.dataset.id) - selectedShipIndex + width * i].classList.add("taken", shipName);
+            
+        }
+    } 
+    // else return
+
+    // removing our ship from our choice grid after moving it to our game grid
+    displayGrid.removeChild(draggedShip);
+    console.log(draggedShip);
+    
 };
 
 // function for dragstart
