@@ -170,10 +170,10 @@ let draggedShip;
 let draggedShipLength;
 // function for dragstart
 function dragStart() {
+    // "this" is our draggedShip data"
     draggedShip = this;
-    console.log(draggedShip);
+    // to get the length of our targetted dragged ship
     draggedShipLength = draggedShip.children.length;
-    console.log(draggedShipLength);
 };
 
 // function for dragover
@@ -193,13 +193,21 @@ function dragLeave() {
 
 // function for dragstart
 function dragDrop() {
-    console.log(draggedShip);
+    // getting the ship name and the last index (since we used that for our last id of the div)
     let shipNameWithLastId = draggedShip.lastElementChild.id;
-    console.log(shipNameWithLastId);
-    let shipClass = selectedShipNameWithIndex.slice(0, -2);
-    console.log(shipClass);
+    
+    // getting the ship name (removing the last part of the string above)
+    let shipName = selectedShipNameWithIndex.slice(0, -2);
+    
+    // getting the last index in our ship array
     let lastShipIndex = parseInt(shipNameWithLastId.substr(-1));
-    console.log(lastShipIndex);
+
+    // getting the last square number our ship will be in on the grid
+    let shipLastIdInGrid = lastShipIndex + parseInt(this.dataset.id);
+
+    // get the selected index of ship we're dragging
+    selectedShipIndex = parseInt(selectedShipNameWithIndex.substr(-1));
+
 };
 
 // function for dragstart
