@@ -268,14 +268,19 @@ console.log(currentPlayer);
 function playGame() {
     if (isGameOver) return;
     if (currentPlayer === "user") {
-        turnDisplay.innerHTML = "Your Turn!"
+        turnDisplay.innerHTML = "Your Turn!";
+        computerSquares.forEach(square => square.addEventListener("click", function(e) {
+            revealSquare(square);
+        }))
     }
     if (currentPlayer === "enemyComputer") {
         turnDisplay.innerHTML = "Enemy's Turn!"
+        // computerTurn function will go here 
     }
 };
 
-playGame();
+startButton.addEventListener("click", playGame);
+
 
 
 
