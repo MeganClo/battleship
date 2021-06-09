@@ -90,10 +90,10 @@ function randomPlacement(ship) {
     if (randomDirection === 1) {
         direction = 10;
     }
-    console.log("this is randomdirection", randomDirection)
-    console.log("this is current", current)
-    console.log("this is direction", direction);
-    console.log("this is ship's length", ship.directions[0].length)
+    // console.log("this is randomdirection", randomDirection)
+    // console.log("this is current", current)
+    // console.log("this is direction", direction);
+    // console.log("this is ship's length", ship.directions[0].length)
     // checking to see if any of squares are already taken by a different ship
     
     // setting our random starting square for each ship
@@ -102,7 +102,7 @@ function randomPlacement(ship) {
     let randomStartSquare = Math.abs(Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction)))
     
     
-    console.log("this is randomStartSquare", randomStartSquare)
+    // console.log("this is randomStartSquare", randomStartSquare)
     const isTaken = current.some(index => computerSquares[randomStartSquare + index].classList.contains("taken"));
     
     // checking to see if we're at the right edge (not where we want to be because we can't build out our ship)
@@ -137,7 +137,8 @@ function rotateShip() {
         cruiser.classList.toggle("cruiser-container-vertical");
         battleship.classList.toggle("battleship-container-vertical");
         carrier.classList.toggle("carrier-container-vertical");
-        isHorizontal = false
+        isHorizontal = false;
+        // return;
     }
     if (!isHorizontal) {
         // console.log(shipArr[i].name)
@@ -150,8 +151,10 @@ function rotateShip() {
         cruiser.classList.toggle("cruiser-container");
         battleship.classList.toggle("battleship-container");
         carrier.classList.toggle("carrier-container");
-        isHorizontal = true
+        isHorizontal = true;
+        // return;
     }
+    console.log(isHorizontal);
 }
 
 rotateButton.addEventListener("click", rotateShip);
