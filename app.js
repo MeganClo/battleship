@@ -150,6 +150,11 @@ function rotateShip() {
 rotateButton.addEventListener("click", rotateShip);
 
 // user to move around their ships
+let selectedShipNameWithIndex;
+
+ships.forEach(ship => ship.addEventListener("mousedown", (e) => {
+    selectedShipNameWithIndex = e.target.id
+}));
 
 // even listener for squares with a function for each drag event
 ships.forEach(ship => ship.addEventListener("dragstart", dragStart));
@@ -160,29 +165,37 @@ userSquares.forEach(square => square.addEventListener("dragleave", dragLeave));
 userSquares.forEach(square => square.addEventListener("drop", dragDrop));
 userSquares.forEach(square => square.addEventListener("dragend", dragEnd));
 
+// to know which index in our ship array we've grabbed
+let draggedShip;
+let draggedShipLength;
 // function for dragstart
 function dragStart() {
-
+    draggedShip = this;
+    console.log(draggedShip);
+    draggedShipLength = draggedShip.children.length;
+    console.log(draggedShipLength);
 };
 
 // function for dragover
-function dragOver() {
-
+function dragOver(e) {
+    e.preventDefault();
 };
 
 // function for dragstart
-function dragEnter() {
-
+function dragEnter(e) {
+    e.preventDefault();
 };
 
 // function for dragstart
 function dragLeave() {
-
+    console.log("drag leave");
 };
 
 // function for dragstart
 function dragDrop() {
-
+    letShipNameWithLastId = draggedShip.lastChild.id;
+    let shipClass = selectedShipNameWithIndex.slice(0, -2);
+    console.log(shipClass);
 };
 
 // function for dragstart
