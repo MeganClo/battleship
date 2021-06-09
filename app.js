@@ -22,7 +22,7 @@ const userSquares = [];
 const computerSquares = [];
 // function to create each board (computer and user)
 function createBoard(grid, squares) {
-    for (let i = 0; i < width*width; i++) {
+    for (let i = 0; i < width * width; i++) {
         const square = document.createElement("div");
         square.dataset.id = i;
         grid.appendChild(square);
@@ -49,28 +49,28 @@ const shipArr = [
         name: "submarine",
         directions: [
             [0, 1, 2],
-            [0, width, width*2]
+            [0, width, width * 2]
         ]
     },
     {
         name: "cruiser",
         directions: [
             [0, 1, 2],
-            [0, width, width*2]
+            [0, width, width * 2]
         ]
     },
     {
         name: "battleship",
         directions: [
             [0, 1, 2, 3],
-            [0, width, width*2, width*3]
+            [0, width, width * 2, width * 3]
         ]
     },
     {
         name: "carrier",
         directions: [
             [0, 1, 2, 3, 4],
-            [0, width, width*2, width*3, width*4]
+            [0, width, width * 2, width * 3, width * 4]
         ]
     },
 ];
@@ -95,23 +95,23 @@ function randomPlacement(ship) {
     // console.log("this is direction", direction);
     // console.log("this is ship's length", ship.directions[0].length)
     // checking to see if any of squares are already taken by a different ship
-    
+
     // setting our random starting square for each ship
     // let randomStartSquare = (Math.floor(Math.random() * 99));
 
     let randomStartSquare = Math.abs(Math.floor(Math.random() * computerSquares.length - (ship.directions[0].length * direction)))
-    
-    
+
+
     // console.log("this is randomStartSquare", randomStartSquare)
     const isTaken = current.some(index => computerSquares[randomStartSquare + index].classList.contains("taken"));
-    
+
     // checking to see if we're at the right edge (not where we want to be because we can't build out our ship)
     const isAtRightEdge = current.some(index => (randomStartSquare + index) % width === width - 1);
     // checking to see if we're at the left edge
     const isAtLeftEdge = current.some(index => (randomStartSquare + index) % width === 0);
 
     // if it's not taken, if it's not at the right edge, and its not at the left edge, we can add class taken
-    if(!isTaken && !isAtRightEdge && !isAtLeftEdge) {
+    if (!isTaken && !isAtRightEdge && !isAtLeftEdge) {
         current.forEach(index => computerSquares[randomStartSquare + index].classList.add("taken", ship.name));
     } else randomPlacement(ship);
 };
@@ -123,38 +123,36 @@ for (let i = 0; i < shipArr.length; i++) {
 
 // rotate the ships
 
+//Rotate the ships
 function rotateShip() {
     if (isHorizontal) {
-        // for (let i = 0; i < shipArr.length; i++) {
-        //     console.log(shipArr[i].name);
-        //     (shipArr[i].name).classList.add(`${shipArr[i].name}-container-vertical`);
-        //     (shipArr[i].name).classList.remove(`${shipArr[i].name}-container`);
-            // (shipArr[i].name).classList.toggle(`${shipArr[i].name}-container-vertical`);
-            // isHorizontal = false
-        // }
-        destroyer.classList.toggle("destroyer-container-vertical");
-        submarine.classList.toggle("submarine-container-vertical");
-        cruiser.classList.toggle("cruiser-container-vertical");
-        battleship.classList.toggle("battleship-container-vertical");
-        carrier.classList.toggle("carrier-container-vertical");
-        isHorizontal = false;
-        // return;
+        destroyer.classList.toggle('destroyer-container-vertical')
+        submarine.classList.toggle('submarine-container-vertical')
+        cruiser.classList.toggle('cruiser-container-vertical')
+        battleship.classList.toggle('battleship-container-vertical')
+        carrier.classList.toggle('carrier-container-vertical')
+        isHorizontal = false
+        // console.log(isHorizontal)
+        return
     }
     if (!isHorizontal) {
-        // console.log(shipArr[i].name)
-        // for (let i = 0; i < shipArr.length; i++) {
-        //     (shipArr[i].name).classList.toggle(`${shipArr[i].name}-container`);
-        //     isHorizontal = true
-        // }
-        destroyer.classList.toggle("destroyer-container");
-        submarine.classList.toggle("submarine-container");
-        cruiser.classList.toggle("cruiser-container");
-        battleship.classList.toggle("battleship-container");
-        carrier.classList.toggle("carrier-container");
-        isHorizontal = true;
-        // return;
+        destroyer.classList.toggle('destroyer-container-vertical')
+        submarine.classList.toggle('submarine-container-vertical')
+        cruiser.classList.toggle('cruiser-container-vertical')
+        battleship.classList.toggle('battleship-container-vertical')
+        carrier.classList.toggle('carrier-container-vertical')
+        isHorizontal = true
+        // console.log(isHorizontal)
+        return
     }
-    console.log(isHorizontal);
-}
+};
 
 rotateButton.addEventListener("click", rotateShip);
+
+// user to move around their ships
+
+
+
+
+
+
