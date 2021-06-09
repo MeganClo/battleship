@@ -9,9 +9,12 @@ const cruiser = document.querySelector(".cruiser-container");
 const battleship = document.querySelector(".battleship-container");
 const carrier = document.querySelector(".carrier-container");
 const startButton = document.querySelector("#start");
-const rotateButton = document.querySelector("#rotate");
+const rotateButton = document.getElementById("rotate");
 const turnDisplay = document.querySelector("#whose-turn");
 const infoDisplay = document.querySelector("#game-stats");
+
+// setting horizontal for ships since that is their default
+let isHorizontal = true;
 
 // Create our boards
 const width = 10;
@@ -117,3 +120,18 @@ function randomPlacement(ship) {
 for (let i = 0; i < shipArr.length; i++) {
     randomPlacement(shipArr[i]);
 };
+
+// rotate the ships
+
+function rotateShip() {
+    if (isHorizontal) {
+        destroyer.classList.toggle("destroyer-container-vertical");
+        isHorizontal = false
+    }
+    if (!isHorizontal) {
+        destroyer.classList.toggle("destroyer-container");
+        isHorizontal = true
+    }
+}
+
+rotateButton.addEventListener("click", rotateShip);
