@@ -125,12 +125,24 @@ for (let i = 0; i < shipArr.length; i++) {
 
 function rotateShip() {
     if (isHorizontal) {
-        destroyer.classList.toggle("destroyer-container-vertical");
-        isHorizontal = false
+        for (let i = 0; i < shipArr.length; i++) {
+            console.log(shipArr[i].name);
+            (shipArr[i].name).classList.add(`${shipArr[i].name}-container-vertical`);
+            (shipArr[i].name).classList.remove(`${shipArr[i].name}-container`);
+            // (shipArr[i].name).classList.toggle(`${shipArr[i].name}-container-vertical`);
+            // isHorizontal = false
+        }
+        // destroyer.classList.toggle("destroyer-container-vertical");
+        // isHorizontal = false
     }
     if (!isHorizontal) {
-        destroyer.classList.toggle("destroyer-container");
-        isHorizontal = true
+        console.log(shipArr[i].name)
+        // for (let i = 0; i < shipArr.length; i++) {
+        //     (shipArr[i].name).classList.toggle(`${shipArr[i].name}-container`);
+        //     isHorizontal = true
+        // }
+        // destroyer.classList.toggle("destroyer-container");
+        // isHorizontal = true
     }
 }
 
