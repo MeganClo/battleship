@@ -22,8 +22,8 @@ const userSquares = [];
 const computerSquares = [];
 
 // setting some game logic variables: 
-const isGameOver = false;
-const currentPlayer = "user";
+let isGameOver = false;
+let currentPlayer = "user";
 // function to create each board (computer and user)
 function createBoard(grid, squares) {
     for (let i = 0; i < width * width; i++) {
@@ -199,10 +199,10 @@ function dragLeave() {
 function dragDrop() {
     // getting the ship name and the last index (since we used that for our last id of the div)
     let shipNameWithLastId = draggedShip.lastElementChild.id;
-    
+
     // getting the ship name (removing the last part of the string above)
     let shipName = selectedShipNameWithIndex.slice(0, -2);
-    
+
     // getting the last index in our ship array
     let lastShipIndex = parseInt(shipNameWithLastId.substr(-1));
 
@@ -212,7 +212,7 @@ function dragDrop() {
 
     // making sure our ships don't wrap around the grid-setting some squares in our grid that aren't allowed
     const notAllowedHorizontal = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 1, 11, 21, 31, 41, 51, 61, 71, 81, 91, 2, 22, 32, 42, 52, 62, 72, 82, 92, 3, 13, 23, 33, 43, 53, 63, 73, 83, 93];
-    const notAllowedVertical = [99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60]; 
+    const notAllowedVertical = [99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60];
     // using the ship length to account for the different "not allowed" spaces in the grid
     let newNotAllowedHorizontal = notAllowedHorizontal.splice(0, 10 * lastShipIndex);
     let newNotAllowedVertical = notAllowedVertical.splice(0, 10 * lastShipIndex);
@@ -228,7 +228,7 @@ function dragDrop() {
         console.log(parseInt(this.dataset.id));
         for (let i = 0; i < draggedShipLength; i++) {
             userSquares[parseInt(this.dataset.id) - selectedShipIndex + i].classList.add("taken", shipName);
-            
+
         }
     }
     else if (!isHorizontal && !newNotAllowedVertical.includes(shipLastIdInGrid)) {
@@ -236,15 +236,15 @@ function dragDrop() {
         console.log(width);
         for (let i = 0; i < draggedShipLength; i++) {
             userSquares[parseInt(this.dataset.id) - selectedShipIndex + width * i].classList.add("taken", shipName);
-            
+
         }
-    } 
+    }
     else return
 
     // removing our ship from our choice grid after moving it to our game grid
     displayGrid.removeChild(draggedShip);
     console.log(draggedShip);
-    
+
 };
 
 // function for dragstart
@@ -253,9 +253,29 @@ function dragEnd() {
 };
 
 // Game Logic
+// seeing who will go first: 
+let x = (Math.floor(Math.random() * 2) == 0);
 
+if (x == 1) {
+    currentPlayer = "user";
+} else {
+    currentPlayer = "enemyComputer";
+};
 
+console.log(currentPlayer);
 
+//Game Logic
+function playGame() {
+    if (isGameOver) return;
+    if (currentPlayer === "user") {
+        turnDisplay.innerHTML = "Your Turn!"
+    }
+    if (currentPlayer === "enemyComputer") {
+        turnDisplay.innerHTML = "Enemy's Turn!"
+    }
+};
+
+playGame();
 
 
 
