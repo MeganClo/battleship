@@ -193,9 +193,13 @@ function dragLeave() {
 
 // function for dragstart
 function dragDrop() {
-    letShipNameWithLastId = draggedShip.lastChild.id;
+    console.log(draggedShip);
+    let shipNameWithLastId = draggedShip.lastElementChild.id;
+    console.log(shipNameWithLastId);
     let shipClass = selectedShipNameWithIndex.slice(0, -2);
     console.log(shipClass);
+    let lastShipIndex = parseInt(shipNameWithLastId.substr(-1));
+    console.log(lastShipIndex);
 };
 
 // function for dragstart
