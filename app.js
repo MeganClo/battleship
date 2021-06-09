@@ -20,6 +20,10 @@ let isHorizontal = true;
 const width = 10;
 const userSquares = [];
 const computerSquares = [];
+
+// setting some game logic variables: 
+const isGameOver = false;
+const currentPlayer = "user";
 // function to create each board (computer and user)
 function createBoard(grid, squares) {
     for (let i = 0; i < width * width; i++) {
@@ -247,6 +251,8 @@ function dragDrop() {
 function dragEnd() {
     console.log("dragend")
 };
+
+// Game Logic
 
 
 
