@@ -132,7 +132,7 @@ function rotateShip() {
         battleship.classList.toggle('battleship-container-vertical')
         carrier.classList.toggle('carrier-container-vertical')
         isHorizontal = false
-        // console.log(isHorizontal)
+        console.log(isHorizontal)
         return
     }
     if (!isHorizontal) {
@@ -142,7 +142,7 @@ function rotateShip() {
         battleship.classList.toggle('battleship-container-vertical')
         carrier.classList.toggle('carrier-container-vertical')
         isHorizontal = true
-        // console.log(isHorizontal)
+        console.log(isHorizontal)
         return
     }
 };
@@ -150,6 +150,45 @@ function rotateShip() {
 rotateButton.addEventListener("click", rotateShip);
 
 // user to move around their ships
+
+// even listener for squares with a function for each drag event
+ships.forEach(ship => ship.addEventListener("dragstart", dragStart));
+userSquares.forEach(square => square.addEventListener("dragstart", dragStart));
+userSquares.forEach(square => square.addEventListener("dragover", dragOver));
+userSquares.forEach(square => square.addEventListener("dragenter", dragEnter));
+userSquares.forEach(square => square.addEventListener("dragleave", dragLeave));
+userSquares.forEach(square => square.addEventListener("drop", dragDrop));
+userSquares.forEach(square => square.addEventListener("dragend", dragEnd));
+
+// function for dragstart
+function dragStart() {
+
+};
+
+// function for dragover
+function dragOver() {
+
+};
+
+// function for dragstart
+function dragEnter() {
+
+};
+
+// function for dragstart
+function dragLeave() {
+
+};
+
+// function for dragstart
+function dragDrop() {
+
+};
+
+// function for dragstart
+function dragEnd() {
+
+};
 
 
 
