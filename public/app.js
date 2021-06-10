@@ -24,6 +24,20 @@ const computerSquares = [];
 // setting some game logic variables: 
 let isGameOver = false;
 let currentPlayer = "user";
+
+// multiplayer additions
+// setting socket.io
+const socket = io();
+
+// variables needed for multiplayer
+let gameMode = "";
+let playerNum = 0;
+let ready = false;
+let enemeyReady = false;
+let allShipsPlaced = false;
+let shopFired = -1;
+
+
 // function to create each board (computer and user)
 function createBoard(grid, squares) {
     for (let i = 0; i < width * width; i++) {

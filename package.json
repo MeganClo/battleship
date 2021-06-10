@@ -4,7 +4,8 @@
   "description": "## Description This is the classic battleship game to be played against the computer or to be played two player using Socket.io technology.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",
