@@ -362,6 +362,51 @@ function computerTurn() {
     turnDisplay.innerHTML = "Your Turn!";
 };
 
+function checkForWhoWins() {
+    // checking user's counts to update if sunken ship/adding points and checking if won
+    if (destroyerCount === 2 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's destroyer!";
+        destroyerCount = 10;
+    }
+    if (submarineCount === 3 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's submarine!";
+        submarineCount = 10;
+    }
+    if (cruiserCount === 3 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's cruiser!";
+        cruiserCount = 10;
+    }
+    if (battleshipCount === 4 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's battleship!";
+        battleshipCount = 10;
+    }
+    if (carrierCount === 5 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's carrier!";
+        carrierCount = 10;
+    }
+    // checking computer's counts to update if sunken ship/adding points and checking if won
+    if (destroyerCount === 2 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's destroyer!";
+        destroyerCount = 10;
+    }
+    if (submarineCount === 3 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's submarine!";
+        submarineCount = 10;
+    }
+    if (cruiserCount === 3 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's cruiser!";
+        cruiserCount = 10;
+    }
+    if (battleshipCount === 4 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's battleship!";
+        battleshipCount = 10;
+    }
+    if (carrierCount === 5 ) {
+        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's carrier!";
+        carrierCount = 10;
+    }
+ }
+
 // start the game!
 startButton.addEventListener("click", playGame);
 
