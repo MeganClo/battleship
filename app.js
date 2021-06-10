@@ -385,27 +385,41 @@ function checkForWhoWins() {
         carrierCount = 10;
     }
     // checking computer's counts to update if sunken ship/adding points and checking if won
-    if (destroyerCount === 2 ) {
-        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's destroyer!";
-        destroyerCount = 10;
+    if (compDestroyerCount === 2 ) {
+        infoDisplay.innerHTML = "Ship Down! Your enemy sunk your destroyer!";
+        compDestroyerCount = 10;
     }
-    if (submarineCount === 3 ) {
-        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's submarine!";
-        submarineCount = 10;
+    if (compSubmarineCount === 3 ) {
+        infoDisplay.innerHTML = "Ship Down! Your enemy sunk your submarine!";
+        compSubmarineCount = 10;
     }
-    if (cruiserCount === 3 ) {
-        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's cruiser!";
-        cruiserCount = 10;
+    if (compCruiserCount === 3 ) {
+        infoDisplay.innerHTML = "Ship Down! Your enemy sunk your cruiser!";
+        compCruiserCount = 10;
     }
-    if (battleshipCount === 4 ) {
-        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's battleship!";
-        battleshipCount = 10;
+    if (compBattleshipCount === 4 ) {
+        infoDisplay.innerHTML = "Ship Down! Your enemy sunk your battleship!";
+        compBattleshipCount = 10;
     }
-    if (carrierCount === 5 ) {
-        infoDisplay.innerHTML = "Ship Down! You sunk the enemy's carrier!";
-        carrierCount = 10;
+    if (compCarrierCount === 5 ) {
+        infoDisplay.innerHTML = "Ship Down! Your enemy sunk your carrier!";
+        compCarrierCount = 10;
     }
- }
+
+    if ((destroyerCount + submarineCount + cruiserCount + battleshipCount + carrierCount) === 50) {
+        infoDisplay.innerHTML = "YOU WIN! You sunk all the enemy's ships!";
+        gameOver();
+    }
+    if ((compDestroyerCount + compSubmarineCount + compCruiserCount + compBattleshipCount + compCarrierCount) === 50) {
+        infoDisplay.innerHTML = "YOU LOSE! Your enemy sunk all your ships!";
+        gameOver();
+    }
+};
+
+function gameOver() {
+    isGameOver = true;
+    startButton.removeEventListener("click", playGame);
+}
 
 // start the game!
 startButton.addEventListener("click", playGame);
