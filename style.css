@@ -138,3 +138,11 @@
 .carrier {
     background-color: rgb(44, 43, 43);
 }
+
+.boom {
+    background-color: red;
+}
+
+.miss {
+    background-color: lightgreen;
+}

@@ -262,25 +262,65 @@ if (x == 1) {
     currentPlayer = "enemyComputer";
 };
 
-console.log(currentPlayer);
+
 
 //Game Logic
 function playGame() {
+    console.log(currentPlayer);
     if (isGameOver) return;
     if (currentPlayer === "user") {
         turnDisplay.innerHTML = "Your Turn!";
-        computerSquares.forEach(square => square.addEventListener("click", function(e) {
+        computerSquares.forEach(square => square.addEventListener("click", function (e) {
             revealSquare(square);
-        }))
+        }));
     }
     if (currentPlayer === "enemyComputer") {
-        turnDisplay.innerHTML = "Enemy's Turn!"
-        // computerTurn function will go here 
-    }
+        turnDisplay.innerHTML = "Enemy's Turn!";
+        setTimeout (computerTurn, 1000);
+    };
 };
 
+// start the game!
 startButton.addEventListener("click", playGame);
 
+let destroyerCount = 0;
+let submarineCount = 0;
+let cruiserCount = 0;
+let battleshipCount = 0;
+let carrierCount = 0;
+
+function revealSquare(square) {
+    if (!square.classList.contains("boom") && !square.classList.contains("miss") && currentPlayer === "user") {
+        // checking to see if our chosen square is a particular ship
+        if (square.classList.contains("destroyer")) {
+            destroyerCount++;
+        };
+        if (square.classList.contains("submarine")) {
+            submarineCount++;
+        };
+        if (square.classList.contains("cruiser")) {
+            cruiserCount++;
+        };
+        if (square.classList.contains("battleship")) {
+            battleshipCount++;
+        };
+        if (square.classList.contains("carrier")) {
+            carrierCount++;
+        };
+
+
+
+        // checking if our chosen square is ANY ship
+        if (square.classList.contains("taken")) {
+            square.classList.add("boom");
+        } else {
+            square.classList.add("miss");
+        };
+        currentPlayer = "enemyComputer";
+        playGame();
+    }
+
+};
 
 
 
