@@ -301,6 +301,7 @@ function revealSquare(square) {
         // checking to see if our chosen square is a particular ship
         if (square.classList.contains("destroyer")) {
             destroyerCount++;
+            console.log(destroyerCount);
         };
         if (square.classList.contains("submarine")) {
             submarineCount++;
@@ -323,6 +324,7 @@ function revealSquare(square) {
         } else {
             square.classList.add("miss");
         };
+        checkForWhoWins();
         currentPlayer = "enemyComputer";
         turnDisplay.innerHTML = "Enemy's Turn!";
         playGame();
@@ -350,7 +352,7 @@ function computerTurn() {
         if (userSquares[compRandomChoice].classList.contains("carrier")) {
             compCarrierCount++;
         }
-
+        checkForWhoWins();
         // checking if computer chosen square is ANY ship
         if (userSquares[compRandomChoice].classList.contains("taken")) {
             userSquares[compRandomChoice].classList.add("boom");

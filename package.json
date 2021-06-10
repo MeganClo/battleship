@@ -1,0 +1,24 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "## Description This is the classic battleship game to be played against the computer or to be played two player using Socket.io technology.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeganClo/battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeganClo/battleship/issues"
+  },
+  "homepage": "https://github.com/MeganClo/battleship#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.1.2"
+  }
+}
