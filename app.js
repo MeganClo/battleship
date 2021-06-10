@@ -79,6 +79,20 @@ const shipArr = [
     },
 ];
 
+// setting variables to hold the user and computer ship hit counts
+// user ships
+let destroyerCount = 0;
+let submarineCount = 0;
+let cruiserCount = 0;
+let battleshipCount = 0;
+let carrierCount = 0;
+// computer ships
+let compDestroyerCount = 0;
+let compSubmarineCount = 0;
+let compCruiserCount = 0;
+let compBattleshipCount = 0;
+let compCarrierCount = 0;
+
 // placing computer ships in random location on computer grid
 function randomPlacement(ship) {
     // randomly setting the computer ship to be placed horizontally or vertically (choosing which index in our direction array above)
@@ -264,7 +278,8 @@ if (x == 1) {
 
 
 
-//Game Logic
+//Game Logic below
+// function to call to play game for each turn
 function playGame() {
     console.log(currentPlayer);
     if (isGameOver) return;
@@ -276,19 +291,11 @@ function playGame() {
     }
     if (currentPlayer === "enemyComputer") {
         turnDisplay.innerHTML = "Enemy's Turn!";
-        setTimeout (computerTurn, 1000);
+        setTimeout(computerTurn, 1000);
     };
 };
 
-// start the game!
-startButton.addEventListener("click", playGame);
-
-let destroyerCount = 0;
-let submarineCount = 0;
-let cruiserCount = 0;
-let battleshipCount = 0;
-let carrierCount = 0;
-
+// function to reveal the square the user chooses
 function revealSquare(square) {
     if (!square.classList.contains("boom") && !square.classList.contains("miss") && currentPlayer === "user") {
         // checking to see if our chosen square is a particular ship
@@ -317,10 +324,44 @@ function revealSquare(square) {
             square.classList.add("miss");
         };
         currentPlayer = "enemyComputer";
+        turnDisplay.innerHTML = "Enemy's Turn!";
         playGame();
     }
 
 };
 
+function computerTurn() {
+    let compRandomChoice = Math.floor(Math.random() * userSquares.length);
+    if (!userSquares[compRandomChoice].classList.contains("boom") && !userSquares[compRandomChoice].classList.contains("miss")) {
 
+        // checking to see if computer chosen square is a particular ship
+        if (userSquares[compRandomChoice].classList.contains("destroyer")) {
+            compDestroyerCount++;
+        };
+        if (userSquares[compRandomChoice].classList.contains("submarine")) {
+            compSubmarineCount++;
+        };
+        if (userSquares[compRandomChoice].classList.contains("cruiser")) {
+            compCruiserCount++;
+        };
+        if (userSquares[compRandomChoice].classList.contains("battleship")) {
+            compBattleshipCount++;
+        };
+        if (userSquares[compRandomChoice].classList.contains("carrier")) {
+            compCarrierCount++;
+        }
+
+        // checking if computer chosen square is ANY ship
+        if (userSquares[compRandomChoice].classList.contains("taken")) {
+            userSquares[compRandomChoice].classList.add("boom");
+        } else {
+            userSquares[compRandomChoice].classList.add("miss");
+        };
+    } else computerTurn();
+    currentPlayer = "user";
+    turnDisplay.innerHTML = "Your Turn!";
+};
+
+// start the game!
+startButton.addEventListener("click", playGame);
 
