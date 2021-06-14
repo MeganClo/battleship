@@ -32,7 +32,7 @@ io.on("connection", socket => {
     // "player number" is the title, playerIndex is data of message
     socket.emit("Player number", playerIndex);
 
-    // console.log(`Player ${playerIndex} has connected`);
+    console.log(`Player ${playerIndex} has connected`);
 
     // ignore player 3
     if (playerIndex === -1) return;
