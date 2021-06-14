@@ -69,7 +69,13 @@ function startMultiPlayer() {
 
             console.log(playerNum)
         }
-    });
+    })
+
+    // another player has connected/disconnected
+    socket.on("player-connection", num => {
+        console.log("hello")
+        console.log(`Player number ${num} has connected or disconnected.`)
+    })
 }
 // function to create each board (computer and user)
 function createBoard(grid, squares) {
