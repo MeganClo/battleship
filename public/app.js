@@ -37,6 +37,18 @@ let enemeyReady = false;
 let allShipsPlaced = false;
 let shopFired = -1;
 
+// get player number
+socket.on('Player number', num => {
+    if (num === -1) {
+        console.log("socket yay!")
+        infoDisplay.innerHTML = "Sorry, the server is full"
+    } else {
+        playerNum = parseInt(num)
+        if (playerNum === 1) currentPlayer = "enemy"
+
+        console.log(playerNum)
+    }
+});
 
 // function to create each board (computer and user)
 function createBoard(grid, squares) {
@@ -380,44 +392,44 @@ function computerTurn() {
 
 function checkForWhoWins() {
     // checking user's counts to update if sunken ship/adding points and checking if won
-    if (destroyerCount === 2 ) {
+    if (destroyerCount === 2) {
         infoDisplay.innerHTML = "Ship Down! You sunk the enemy's destroyer!";
         destroyerCount = 10;
     }
-    if (submarineCount === 3 ) {
+    if (submarineCount === 3) {
         infoDisplay.innerHTML = "Ship Down! You sunk the enemy's submarine!";
         submarineCount = 10;
     }
-    if (cruiserCount === 3 ) {
+    if (cruiserCount === 3) {
         infoDisplay.innerHTML = "Ship Down! You sunk the enemy's cruiser!";
         cruiserCount = 10;
     }
-    if (battleshipCount === 4 ) {
+    if (battleshipCount === 4) {
         infoDisplay.innerHTML = "Ship Down! You sunk the enemy's battleship!";
         battleshipCount = 10;
     }
-    if (carrierCount === 5 ) {
+    if (carrierCount === 5) {
         infoDisplay.innerHTML = "Ship Down! You sunk the enemy's carrier!";
         carrierCount = 10;
     }
     // checking computer's counts to update if sunken ship/adding points and checking if won
-    if (compDestroyerCount === 2 ) {
+    if (compDestroyerCount === 2) {
         infoDisplay.innerHTML = "Ship Down! Your enemy sunk your destroyer!";
         compDestroyerCount = 10;
     }
-    if (compSubmarineCount === 3 ) {
+    if (compSubmarineCount === 3) {
         infoDisplay.innerHTML = "Ship Down! Your enemy sunk your submarine!";
         compSubmarineCount = 10;
     }
-    if (compCruiserCount === 3 ) {
+    if (compCruiserCount === 3) {
         infoDisplay.innerHTML = "Ship Down! Your enemy sunk your cruiser!";
         compCruiserCount = 10;
     }
-    if (compBattleshipCount === 4 ) {
+    if (compBattleshipCount === 4) {
         infoDisplay.innerHTML = "Ship Down! Your enemy sunk your battleship!";
         compBattleshipCount = 10;
     }
-    if (compCarrierCount === 5 ) {
+    if (compCarrierCount === 5) {
         infoDisplay.innerHTML = "Ship Down! Your enemy sunk your carrier!";
         compCarrierCount = 10;
     }

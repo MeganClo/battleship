@@ -27,13 +27,15 @@ io.on("connection", socket => {
             break;
         }
     }
-    // ignore player 3
-    if (playerIndex === -1) return;
 
     // tell the connecting client what player number they are:
     // "player number" is the title, playerIndex is data of message
     socket.emit("Player number", playerIndex);
 
     console.log(`Player ${playerIndex} has connected`);
+
+    // ignore player 3
+    if (playerIndex === -1) return;
+
 
 });
