@@ -12,6 +12,9 @@ const startButton = document.querySelector("#start");
 const rotateButton = document.getElementById("rotate");
 const turnDisplay = document.querySelector("#whose-turn");
 const infoDisplay = document.querySelector("#game-stats");
+const singlePlayerButton = document.getElementById("singlePlayerButton");
+const multiPlayerButton = document.getElementById("multiPlayerButton")
+
 
 // setting horizontal for ships since that is their default
 let isHorizontal = true;
@@ -40,7 +43,7 @@ let shopFired = -1;
 // get player number
 socket.on('Player number', num => {
     if (num === -1) {
-        console.log("socket yay!")
+        // console.log("socket yay!")
         infoDisplay.innerHTML = "Sorry, the server is full"
     } else {
         playerNum = parseInt(num)
@@ -190,8 +193,6 @@ function rotateShip() {
         return
     }
 };
-
-rotateButton.addEventListener("click", rotateShip);
 
 // user to move around their ships
 let selectedShipNameWithIndex;
@@ -449,6 +450,12 @@ function gameOver() {
     startButton.removeEventListener("click", playGame);
 }
 
+
+// Button Event Listeners
+// single player mode
+singlePlayerButton.addEventListener("click", startSinglePlayer);
+// two player mode
+multiPlayerButton.addEventListener("click", startMultiPlayer);
+
 // start the game!
 startButton.addEventListener("click", playGame);
-
