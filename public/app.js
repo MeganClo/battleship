@@ -28,9 +28,6 @@ const computerSquares = [];
 let isGameOver = false;
 let currentPlayer = "user";
 
-// multiplayer additions
-// setting socket.io
-const socket = io();
 
 // variables needed for multiplayer
 let gameMode = "";
@@ -40,19 +37,40 @@ let enemeyReady = false;
 let allShipsPlaced = false;
 let shopFired = -1;
 
-// get player number
-socket.on('Player number', num => {
-    if (num === -1) {
-        // console.log("socket yay!")
-        infoDisplay.innerHTML = "Sorry, the server is full"
-    } else {
-        playerNum = parseInt(num)
-        if (playerNum === 1) currentPlayer = "enemy"
 
-        console.log(playerNum)
-    }
-});
+// single player game play
+function startSinglePlayer() {
+    gameMode = "singlePlayer";
 
+    // looping though ship array and passing each ship into our function to generate the placement
+    for (let i = 0; i < shipArr.length; i++) {
+        randomPlacement(shipArr[i]);
+    };
+
+    // start the game!
+    startButton.addEventListener("click", playGameSingle);
+};
+
+// multiplayer game play
+function startMultiPlayer() {
+    gameMode = "muliPlayer";
+
+    // setting socket.io
+    const socket = io();
+
+    // get player number
+    socket.on('Player number', num => {
+        if (num === -1) {
+            // console.log("socket yay!")
+            infoDisplay.innerHTML = "Sorry, the server is full"
+        } else {
+            playerNum = parseInt(num)
+            if (playerNum === 1) currentPlayer = "enemy"
+
+            console.log(playerNum)
+        }
+    });
+}
 // function to create each board (computer and user)
 function createBoard(grid, squares) {
     for (let i = 0; i < width * width; i++) {
@@ -163,13 +181,7 @@ function randomPlacement(ship) {
     } else randomPlacement(ship);
 };
 
-// looping though ship array and passing each ship into our function to generate the placement
-for (let i = 0; i < shipArr.length; i++) {
-    randomPlacement(shipArr[i]);
-};
-
 // rotate the ships
-
 //Rotate the ships
 function rotateShip() {
     if (isHorizontal) {
@@ -307,7 +319,7 @@ if (x == 1) {
 
 //Game Logic below
 // function to call to play game for each turn
-function playGame() {
+function playGameSingle() {
     console.log(currentPlayer);
     if (isGameOver) return;
     if (currentPlayer === "user") {
@@ -354,7 +366,7 @@ function revealSquare(square) {
         checkForWhoWins();
         currentPlayer = "enemyComputer";
         turnDisplay.innerHTML = "Enemy's Turn!";
-        playGame();
+        playGameSingle();
     }
 
 };
@@ -447,7 +459,7 @@ function checkForWhoWins() {
 
 function gameOver() {
     isGameOver = true;
-    startButton.removeEventListener("click", playGame);
+    startButton.removeEventListener("click", playGameSingle);
 }
 
 
@@ -457,5 +469,3 @@ singlePlayerButton.addEventListener("click", startSinglePlayer);
 // two player mode
 multiPlayerButton.addEventListener("click", startMultiPlayer);
 
-// start the game!
-startButton.addEventListener("click", playGame);
